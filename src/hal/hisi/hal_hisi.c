@@ -274,13 +274,14 @@ int hisi_gen2_sensor_read_register(int fd, unsigned char i2c_addr,
 int hisi_sensor_read_register(int fd, unsigned char i2c_addr,
                               unsigned int reg_addr, unsigned int reg_width,
                               unsigned int data_width) {
-    printf("i2c read: %x\n", i2c_addr);
     struct i2c_rdwr_ioctl_data rdwr;
     struct i2c_msg msg[2];
     unsigned int reg_addr_end = reg_addr;
     unsigned char buf[4];
     unsigned int data;
-
+    
+    printf("i2c read: %d\n", i2c_addr);
+    
     // measure ioctl execution time to exit early in too slow response
     struct rusage start_time;
     int ret = getrusage(RUSAGE_SELF, &start_time);
