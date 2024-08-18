@@ -274,6 +274,7 @@ int hisi_gen2_sensor_read_register(int fd, unsigned char i2c_addr,
 int hisi_sensor_read_register(int fd, unsigned char i2c_addr,
                               unsigned int reg_addr, unsigned int reg_width,
                               unsigned int data_width) {
+    printf("i2c read: %x\n", i2c_addr);
     struct i2c_rdwr_ioctl_data rdwr;
     struct i2c_msg msg[2];
     unsigned int reg_addr_end = reg_addr;
@@ -458,8 +459,10 @@ void setup_hal_hisi() {
         //open_i2c_sensor_fd = hisi_gen1_open_i2c_sensor_fd;
         open_i2c_sensor_fd = hisi_open_i2c_fd;
         open_spi_sensor_fd = hisi_gen1_open_spi_sensor_fd;
-        i2c_read_register = hisi_gen1_sensor_read_register;
-        i2c_write_register = hisi_gen1_sensor_write_register;
+        //i2c_read_register = hisi_gen1_sensor_read_register;
+        //i2c_write_register = hisi_gen1_sensor_write_register;
+        i2c_read_register = hisi_sensor_read_register;
+        i2c_write_register = hisi_sensor_write_register;
         spi_read_register = sony_ssp_read_register;
     } else if (chip_generation == HISI_V2 || chip_generation == HISI_V2A) {
         i2c_read_register = hisi_gen2_sensor_read_register;
