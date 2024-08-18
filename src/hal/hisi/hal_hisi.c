@@ -455,7 +455,8 @@ void setup_hal_hisi() {
     hal_cleanup = hisi_hal_cleanup;
     if (chip_generation == HISI_V1) {
         printf("Uses GEN1!\n");
-        open_i2c_sensor_fd = hisi_gen1_open_i2c_sensor_fd;
+        //open_i2c_sensor_fd = hisi_gen1_open_i2c_sensor_fd;
+        open_i2c_sensor_fd = hisi_open_i2c_fd;
         open_spi_sensor_fd = hisi_gen1_open_spi_sensor_fd;
         i2c_read_register = hisi_gen1_sensor_read_register;
         i2c_write_register = hisi_gen1_sensor_write_register;
