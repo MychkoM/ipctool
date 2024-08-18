@@ -88,6 +88,7 @@ static int hisi_open_spi_fd() {
 }
 
 static int hisi_gen1_open_i2c_sensor_fd() {
+    printf("h1. I2C=hi_i2c.\n");
     return universal_open_sensor_fd("/dev/hi_i2c");
 }
 
@@ -136,7 +137,7 @@ int hisi_gen1_sensor_write_register(int fd, unsigned char i2c_addr,
     ret = ioctl(fd, CMD_I2C_WRITE, &i2c_data);
 
     if (ret) {
-        printf("i2c write failed!\n");
+        printf("h1. i2c write failed!\n");
         return -1;
     }
 
@@ -232,7 +233,7 @@ int hisi_gen1_sensor_read_register(int fd, unsigned char i2c_addr,
 
     ret = ioctl(fd, CMD_I2C_READ, &i2c_data);
     if (ret) {
-        printf("i2c read failed!\n");
+        printf("h1. i2c read failed!\n");
         return -1;
     }
 
@@ -453,6 +454,7 @@ void setup_hal_hisi() {
     open_spi_sensor_fd = hisi_open_spi_fd;
     hal_cleanup = hisi_hal_cleanup;
     if (chip_generation == HISI_V1) {
+        printf("Uses GEN1!\n");
         open_i2c_sensor_fd = hisi_gen1_open_i2c_sensor_fd;
         open_spi_sensor_fd = hisi_gen1_open_spi_sensor_fd;
         i2c_read_register = hisi_gen1_sensor_read_register;
