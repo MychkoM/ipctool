@@ -202,7 +202,8 @@ int universal_spi_write_register(int fd, unsigned char i2c_addr,
 static int fallback_open_sensor_fd(int i2c_adapter_nr) {
     char adapter_name[FILENAME_MAX];
 
-    snprintf(adapter_name, sizeof(adapter_name), "/dev/i2c-%d", i2c_adapter_nr);
+    snprintf(adapter_name, sizeof(adapter_name), "/dev/i2cm");
+    printf("!!! I2C adapter name: %s\n", adapter_name);
     return universal_open_sensor_fd(adapter_name);
 }
 
