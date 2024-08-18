@@ -44,7 +44,7 @@ static int hisi_open_i2c_fd() {
     char filename[FILENAME_MAX];
 
     snprintf(filename, sizeof(filename), "/dev/i2cm");
-
+    printf("! I2C adapter name: %s\n", filename);
     return universal_open_sensor_fd(filename);
 }
 
