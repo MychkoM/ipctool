@@ -280,7 +280,7 @@ int hisi_sensor_read_register(int fd, unsigned char i2c_addr,
     unsigned char buf[4];
     unsigned int data;
     
-    printf("i2c read: %d\n", i2c_addr);
+    printf("i2c read: %x. ", i2c_addr);
     
     // measure ioctl execution time to exit early in too slow response
     struct rusage start_time;
